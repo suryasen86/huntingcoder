@@ -1,0 +1,17 @@
+.blogItems{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+
+}
+.blogItem{
+    justify-content: center;
+    display: flex;
+}
+.blogItem >h5{
+    cursor: pointer;
+    
+}
+.blogItem >h5:hover{
+    color:blue;
+}

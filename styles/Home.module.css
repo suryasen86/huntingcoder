@@ -114,3 +114,10 @@
     flex-direction: column;
   }
 }
+
+
+.mainLogo{
+  justify-content: center;
+  align-items: center;
+ 
+}
