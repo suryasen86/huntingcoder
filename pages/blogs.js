@@ -1,37 +1,45 @@
-import React,{Fragment} from "react";
+import React, { Fragment ,useState} from "react";
 import Header from "../components/Header";
 import styles from '../styles/Blog.module.css'
 import Link from "next/link";
-const Blogs = () => {
+const Blogs = (props) => {
+  
+  const [blogs, setblogs] = useState(props.arr);
+  
+ 
   return (
     <Fragment>
       <Header title={"Blogs"} />
-     <center>
-     <div className="container">
-            <h3>Blogs </h3>
-            <div className={styles.blogItems}>
-                <div className={styles.blogItem}>
-                    <Link href="/blogpost/my-frist-blog">
-                    <h5>my Frist Blog</h5>
-                    </Link>
-                           
-                </div>
+      <center>
+        <div className="container">
+          <h3>Blogs </h3>
+          <div className={styles.blogItems}>
+            {blogs.map((item)=>{
+              return (  <div key={item.name} className={styles.blogItem}>
+                <Link href={"blogpost/"+item.href}>
+                  <h5>{item.name}</h5>
+                </Link>
+  
+              </div>)
+            })}
+          
 
-                <div className={styles.blogItem}>
-                <Link href="/blogpost/my-second-blog">
-                            <h5>my Second Blog</h5>
-                            </Link>
-                </div>
-                <div className={styles.blogItem}>
-                <Link href="/blogpost/my-third-blog">
-                            <h5>my Third Blog</h5>
-                            </Link>
-                </div>
-            </div>
+           
+          </div>
         </div>
-     </center>
+      </center>
     </Fragment>
   );
 };
+export async function getServerSideProps(context) {
+  let arr=[
+    {href:"my-frist-blog",name:"my Frist Blog"},
+    {href:"my-second-blog",name:"my Second Blog"},
+    {href:"my-third-blog",name:"my Third Blog"}
+  ]
+  return {
+    props: {arr}, // will be passed to the page component as props
+  }
+}
 
 export default Blogs;
