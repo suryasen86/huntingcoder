@@ -13,6 +13,7 @@ const slug = (props) => {
 }
 export async function getServerSideProps(context) {
     const { slug }=context.query
+    console.log(slug)
     return {
       props: {slug}, // will be passed to the page component as props
     }
